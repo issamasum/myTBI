@@ -1,0 +1,13 @@
+{
+  // For more information, visit: https://angular.dev/ai/mcp
+  "servers": {
+    "angular-cli": {
+      "command": "pnpm",
+      "args": ["run", "mcp:angular"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@microsoft/mcp-server-playwright"]
+    },
+  }
+}

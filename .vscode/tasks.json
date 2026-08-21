@@ -1,0 +1,73 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "frontend: run",
+      "type": "shell",
+      "command": "pnpm start",
+      "options": {
+        "cwd": "${workspaceFolder:frontend}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "Application bundle generation (complete|failed)"
+        }
+      }
+    },
+    {
+      "label": "repo: uv sync",
+      "type": "shell",
+      "command": "uv sync --all-packages --all-groups",
+      "options": {
+        "cwd": "${workspaceFolder:repo}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "api: run",
+      "type": "shell",
+      "command": "uv run --package mytbi-api uvicorn api.main:app --reload --host 0.0.0.0 --port 8000",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "Uvicorn running on"
+        }
+      },
+      "dependsOn": "repo: uv sync"
+    },
+    {
+      "label": "dev: run frontend + api",
+      "dependsOn": ["frontend: run", "api: run"],
+      "dependsOrder": "parallel",
+      "problemMatcher": ["$python", "$tsc"]
+    },
+    {
+      "label": "frontend: install",
+      "type": "shell",
+      "command": "pnpm install",
+      "options": {
+        "cwd": "${workspaceFolder:frontend}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

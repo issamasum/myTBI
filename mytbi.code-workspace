@@ -1,0 +1,82 @@
+{
+  "folders": [
+    {
+      "name": "frontend",
+      "path": "frontend"
+    },
+    {
+      "name": "api",
+      "path": "api"
+    },
+    {
+      "name": "core",
+      "path": "packages/mytbi-core"
+    },
+    {
+      "name": "infra",
+      "path": "infra"
+    },
+    {
+      "name": "repo",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "tailwindCSS.experimental.configFile": "frontend/src/styles/tailwind.css",
+    "tailwindCSS.includeLanguages": {
+      "scss": "css"
+    },
+    "vitest.rootConfig": "frontend/vitest.config.ts",
+    "files.exclude": {
+      "**/.git": true,
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/.ruff_cache": true,
+      "**/.pnpm-store": true,
+      "**/node_modules": true,
+      "**/playwright-report": true,
+      "**/test-results": true,
+      "**/.angular": true
+    },
+    "search.exclude": {
+      "**/.venv": true,
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/.ruff_cache": true,
+      "**/.pnpm-store": true,
+      "**/node_modules": true,
+      "**/playwright-report": true,
+      "**/test-results": true,
+      "**/dist": true,
+      "**/.angular": true
+    },
+    "python.defaultInterpreterPath": "/workspaces/mytbi/.venv/bin/python",
+    "python.analysis.extraPaths": [
+      "/workspaces/mytbi/api/src",
+      "/workspaces/mytbi/packages/mytbi-core/src",
+
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "vitest.explorer",
+      "ms-playwright.playwright",
+      "angular.ng-template",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "Debug Frontend + API",
+        "configurations": [
+          "Frontend: serve",
+          "API: FastAPI"
+          
+        ]
+      }
+    ]
+  }
+}

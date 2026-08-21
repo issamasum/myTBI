@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "angular-cli": {
+      "command": "pnpm",
+      "args": ["--dir", "frontend", "run", "mcp:angular"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@microsoft/mcp-server-playwright"]
+    }
+  }
+}

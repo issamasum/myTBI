@@ -1,0 +1,72 @@
+{
+  "name": "mytbi",
+  "dockerComposeFile": "compose.yaml",
+  "service": "dev",
+  "workspaceFolder": "/workspaces/mytbi",
+  "shutdownAction": "stopCompose",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1.9.0": {}
+  },
+  "forwardPorts": [8000, 4200, 5432],
+  "portsAttributes": {
+    "8000": {
+      "label": "FastAPI"
+    },
+    "4200": {
+      "label": "Angular Dev Server"
+    },
+    "5432": {
+      "label": "Postgres"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "chat.mcp.autoStart": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.defaultInterpreterPath": "/workspaces/learnwithai/.venv/bin/python",
+        "python.analysis.extraPaths": [
+          "/workspaces/learnwithai/packages/mytbi-core/src"
+        ],
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true,
+          "**/.pnpm-store": true,
+          "**/node_modules": true,
+          "**/playwright-report": true,
+          "**/test-results": true,
+          "**/.angular": true
+        },
+        "search.exclude": {
+          "**/.venv": true,
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true,
+          "**/.pnpm-store": true,
+          "**/node_modules": true,
+          "**/playwright-report": true,
+          "**/test-results": true,
+          "**/dist": true,
+          "**/.angular": true
+        }
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "angular.ng-template",
+        "vitest.explorer",
+        "ms-playwright.playwright"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode"
+}

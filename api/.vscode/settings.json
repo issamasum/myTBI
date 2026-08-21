@@ -1,0 +1,9 @@
+{
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+        "api/test"
+    ],
+    "python.testing.cwd": "/workspaces/mytbi",
+    "python.defaultInterpreterPath": "/workspaces/mytbi/.venv/bin/python"
+}

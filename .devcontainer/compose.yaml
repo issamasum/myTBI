@@ -1,0 +1,44 @@
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspaces/mytbi:cached
+      - mytbi-uv-cache:/home/vscode/.cache/uv
+      - mytbi-playwright-cache:/home/vscode/.cache/ms-playwright
+      - mytbi-npm-cache:/home/vscode/.npm
+      - mytbi-pnpm-store:/home/vscode/.local/share/pnpm/store
+    working_dir: /workspaces/mytbi
+    command: sleep infinity
+    environment:
+      PYTHONUNBUFFERED: "1"
+      UV_LINK_MODE: copy
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@postgres:5432/mytbi
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: mytbi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - mytbi-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d mytbi"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mytbi-postgres-data:
+  mytbi-uv-cache:
+  mytbi-playwright-cache:
+  mytbi-npm-cache:
+  mytbi-pnpm-store:

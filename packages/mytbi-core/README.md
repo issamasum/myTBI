@@ -1,0 +1,124 @@
+# mytbi-core
+
+`mytbi-core` is the main shared backend package for myTBI.
+
+This directory contains the reusable logic that should work the same way when it is called from the API.
+
+## What This Package Owns
+
+Featured code address the design question similar to the list below:
+
+- What rules does the product follow?
+- How is data stored and loaded?
+- What service should run when a feature is triggered?
+
+Writing code for a similar questionabove usually involve:
+
+- configuration and environment helpers
+- database setup and session helpers
+- SQLModel tables and domain models
+- repositories
+- services
+- shared job definitions
+- feature-specific tool packages under `tools/`
+
+## Start Here
+
+If you are new to this package, read these files in order:
+
+1. `src/mytbi/config.py`
+2. `src/mytbi/db.py`
+3. `src/mytbi/services/`
+4. `src/mytbi/repositories/`
+5. `src/mytbi/tools/`
+
+## Directory Map
+
+```text
+src/mytbi/
+|- config.py            Settings and environment parsing
+|- db.py                Database engine and session helpers
+|- models/              API-facing and shared domain models
+|- tables/              SQLModel table definitions
+|- repositories/        Data access layer
+|- services/            Shared business logic
+|- interfaces/          Shared protocols used across packages
+`- tools/               Self-contained feature packages
+```
+
+Current tool packages live under `tools/`. For example, `tools/checkin/` keeps the check-in at TBI feature's tables, repository, service, and models.
+
+## How This Package Fits The System
+
+Most backend requests follow this path:
+
+1. A FastAPI route in `api/` receives the request.
+2. The route loads any path-based resources it needs.
+3. The route calls a service in `mytbi-core`.
+4. The service uses repositories and models from this package.
+
+If a piece of logic would be useful in the API, it probably belongs in this package.
+
+## Important Conventions
+
+### Keep this package framework-light
+
+Do not put FastAPI request or response details here. The API workspace should translate HTTP into calls into this package.
+
+### Services own behavior
+
+Services are classes. Their dependencies are injected through `__init__`. Public methods come first, and private helper methods come after them.
+
+### Repositories own persistence
+
+Repositories should handle database loading and saving. Services should not build SQL queries directly.
+
+For SQLModel-backed repositories, shared CRUD behavior now lives in `src/mytbi/repositories/base_repository.py`.
+That means most repositories should subclass `BaseRepository[ModelT, IdentifierT]`, declare their `model_type`, and then add only the queries that are specific to that model.
+Avoid re-implementing `create`, `get_by_id`, `update`, or `delete` unless a repository has a documented exception.
+
+Repository `update` now assumes the caller is working with an object already loaded in the current session.
+Use the default `add` + `flush` + `refresh` behavior unless you can point to a real detached-instance workflow.
+If detached-instance handling ever becomes necessary, treat that as an explicit design choice: document it in the repository and cover it with tests.
+
+### `subject` comes first
+
+When a service method accepts the authenticated user, the `subject` parameter must be first.
+
+```python
+def get_course_roster(self, subject: User, course: Event) -> list[Visitor]: ...
+```
+
+### Prefer relationship loading over manual joins
+
+When loading related SQLModel objects in repositories, prefer eager loading with `selectinload` instead of returning manual tuple-shaped join results.
+
+## Tests
+
+Tests mirror the package structure and live in `test/`.
+
+Important areas include:
+
+- `test/repositories/`
+- `test/services/`
+- `test/tools/`
+
+The shared database fixtures live in `test/conftest.py`. Reuse them instead of redefining them in subdirectories.
+
+Run tests from the repository root:
+
+```bash
+uv run pytest packages/mytbi-core/test
+```
+
+## Helpful Scripts
+
+From `packages/mytbi-core/`:
+
+```bash
+uv run python scripts/create_database.py
+uv run python scripts/reset_database.py
+```
+
+- `create_database.py` creates the configured development database tables.
+- `reset_database.py` drops and recreates the configured development database, then rebuilds the tables.
