@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Issa Masumbuko
 # SPDX-License-Identifier: MIT
 
-"""Pydentic models for checkin at TBI API requests and responses."""
+"""Pydantic models for checkin at TBI API requests and responses."""
 
 from datetime import datetime
 from typing import Optional
