@@ -1,7 +1,7 @@
 [project]
 name = "trianglebahaiinstitute-core"
 version = "0.1.0"
-description = "Shared core domain and business logic for myTBI"
+description = "Shared core domain and business logic for TriangleBahaiInstitute.org"
 license = { text = "MIT" }
 requires-python = ">=3.12"
 dependencies = [
@@ -22,7 +22,7 @@ dev = [
 ]
 
 [tool.uv.build-backend]
-module-name = "learnwithai"
+module-name = "trianglebahaiinstitute"
 
 [build-system]
 requires = ["uv_build>=0.10.9,<0.11.0"]

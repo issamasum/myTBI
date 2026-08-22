@@ -50,7 +50,7 @@
       "**/dist": true,
       "**/.angular": true,
     },
-    "python.defaultInterpreterPath": "/workspaces/trianglebahaiinstitut/.venv/bin/python",
+    "python.defaultInterpreterPath": "/workspaces/trianglebahaiinstitute/.venv/bin/python",
     "python.analysis.extraPaths": [
       "/workspaces/trianglebahaiinstitute/api/src",
       "/workspaces/trianglebahaiinstitute/packages/trianglebahaiinstitute-core/src",
