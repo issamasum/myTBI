@@ -1,6 +1,6 @@
 # TriangleBahaiInstitute.org
 
-The Triangle Baha’i Institute Facility supports the endevors of the Triangle Baha'i Community. It hosts many people and houses many resources. TriangleBahaiInstitute.org is a project born out the desire to have a centralized system for documenting the Facility's usage, as well as offering different resources to visitors. It is intentionally organized as a small full-stack system instead of a single app so we can work across different service boundaries, shared packages and a modern frontend.
+The Triangle Baha’i Institute supports the endevors of the Triangle Baha'i Community concering building vinrant community, and promoting material and spiritual education. At the core of these efforts is the Triangle Baha'i Institute Facility, which hosts many people and houses many resources. TriangleBahaiInstitute.org is a project born out the desire to have a centralized web application that showcases various endevors being taken by the Triangle Baha'i community, as well as house certain systems and features for documenting the Triangle Baha'i Institute Facility's usage, as well as offering different resources to visitors. It is intentionally organized as full-stack system instead of a single app so contributors can work across different service boundaries, shared packages and a modern frontend.
 
 At a high level, the system has four moving parts:
 
