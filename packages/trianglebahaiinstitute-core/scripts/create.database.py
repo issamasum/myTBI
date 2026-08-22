@@ -4,9 +4,9 @@
 
 import sys
 
-import mytbi.tables  # noqa: F401
-from mytbi.config import Settings
-from mytbi.db import create_db_and_tables
+import trianglebahaiinstitute.tables  # noqa: F401
+from trianglebahaiinstitute.config import Settings
+from trianglebahaiinstitute.db import create_db_and_tables
 
 settings = Settings()
 

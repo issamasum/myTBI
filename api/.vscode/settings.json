@@ -4,6 +4,6 @@
     "python.testing.pytestArgs": [
         "api/test"
     ],
-    "python.testing.cwd": "/workspaces/mytbi",
-    "python.defaultInterpreterPath": "/workspaces/mytbi/.venv/bin/python"
+    "python.testing.cwd": "/workspaces/trianglebahaiinstitute",
+    "python.defaultInterpreterPath": "/workspaces/trianglebahaiinstitute/.venv/bin/python"
 }

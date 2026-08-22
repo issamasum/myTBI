@@ -1,5 +1,5 @@
 [project]
-name = "mytbi-core"
+name = "trianglebahaiinstitute-core"
 version = "0.1.0"
 description = "Shared core domain and business logic for myTBI"
 license = { text = "MIT" }

@@ -35,4 +35,4 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/
 ENV PATH="/home/vscode/.local/bin:${PATH}"
 
 USER vscode
-WORKDIR /workspaces/mytbi
+WORKDIR /workspaces/trianglebahaiinstitute

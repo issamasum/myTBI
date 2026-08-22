@@ -7,7 +7,7 @@ set -euo pipefail
 sudo mkdir -p /home/vscode/.cache/uv /home/vscode/.cache/ms-playwright /home/vscode/.npm /home/vscode/.local/share/pnpm
 sudo chown -R vscode:vscode /home/vscode/.cache /home/vscode/.npm /home/vscode/.local/share/pnpm
 
-cd /workspaces/mytbi
+cd /workspaces/trianglebahaiinstitute
 
 uv sync --all-packages --all-groups
 

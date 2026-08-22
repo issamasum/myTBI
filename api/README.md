@@ -1,8 +1,8 @@
 # API Workspace
 
-This workspace contains the FastAPI adapter for myTBI. It owns HTTP concerns such as routing, request parsing, dependency wiring, and response models.
+This workspace contains the FastAPI adapter for TriangleBahaiInstitute.org. It owns HTTP concerns such as routing, request parsing, dependency wiring, and response models.
 
-The API layer should stay thin. If code could be reused outside HTTP, move it into `packages/mytbi-core/`.
+The API layer should stay thin. If code could be reused outside HTTP, move it into `packages/trianglebahaiinstitute-core/`.
 
 ## What Lives Here
 
@@ -39,7 +39,7 @@ Most API work follows this path:
 
 1. Route function in `src/api/routes/`
 2. API-specific dependency factory in `src/api/di.py`
-3. Shared service or repository in `mytbi-core`
+3. Shared service or repository in `trianglebahaiinstitute-core`
 4. Response model returned from the route
 
 If you are debugging an endpoint, follow that path in order.
@@ -51,7 +51,7 @@ The easiest option in VS Code is the `api: run` task from the `repo` workspace.
 Equivalent terminal command from the repository root:
 
 ```bash
-uv run --package mytbi-api uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+uv run --package trianglebahaiinstitute-api uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Once it is running, check `http://localhost:8000/api/health`.
@@ -76,7 +76,7 @@ Use this checklist:
 
 1. Add or update the route in `src/api/routes/`.
 2. Keep HTTP-specific logic in the route or `src/api/di.py`.
-3. Move reusable business logic into `mytbi-core`.
+3. Move reusable business logic into `trianglebahaiinstitute-core`.
 4. Keep request body models explicit in the route signature.
 5. Resolve body-driven lookups in the route, not in a body-derived dependency helper.
 6. Add or update tests in `api/test/`, usually under `api/test/routes/`.
@@ -94,7 +94,7 @@ That writes `frontend/openapi.json`, which the frontend uses to regenerate its A
 
 ## Transaction Boundary
 
-Database transaction lifecycle is owned by `get_session` in `mytbi-core`. Route handlers must not call `session.commit()`, `session.rollback()`, or `session.begin()`.
+Database transaction lifecycle is owned by `get_session` in `trianglebahaiinstitute-core`. Route handlers must not call `session.commit()`, `session.rollback()`, or `session.begin()`.
 
 ## Good First Files To Read
 

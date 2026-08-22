@@ -15,19 +15,18 @@ If guidance conflicts, the more local `AGENTS.md` wins.
 ## Repository Expectations
 
 - Keep architecture boundaries clear.
-- Put shared business logic in `packages/mytbi-core/`.
+- Put shared business logic in `packages/trianglebahaiinstitute-core/`.
 - Keep API route handlers thin and focused on HTTP concerns.
 - In the API layer, use dependency injection for shared request-scoped services and path-derived resource loading, not for values derived from request bodies.
-- Transaction lifecycle (commit/rollback/close) is owned by the `get_session` yield dependency in `mytbi-core`. Route handlers must never call `session.commit()`, `session.rollback()`, or `session.begin()`.
+- Transaction lifecycle (commit/rollback/close) is owned by the `get_session` yield dependency in `trianglebahaiinstitute-core`. Route handlers must never call `session.commit()`, `session.rollback()`, or `session.begin()`.
 - Keep frontend components focused on UI concerns.
 - Update documentation when behavior, architecture, commands, or workflows change.
 
 ## Service Design Conventions
 
-Services in `mytbi-core` are classes that declare all their dependencies (repositories, etc.) in `__init__`.
+Services in `trianglebahaiinstitute-core` are classes that declare all their dependencies (repositories, etc.) in `__init__`.
 
 Write services in **literate code style**: public methods first (big picture), private helpers last (details). This means readers encounter the entry points before the implementation details.
-
 
 ## Parameter Ordering Convention
 
@@ -36,7 +35,7 @@ Whenever `subject` (the authenticated user) appears as a parameter in a service 
 Correct: `def get_event_rooster(self, subject: User, course: Course) -> ...`
 Incorrect: `def get_event_roster(self, course: Course, subject: User) -> ...`
 
-This applies uniformly to service methods in `mytbi-core` and to FastAPI route handler signatures. Consistent ordering makes authorization intent immediately visible at every call site.
+This applies uniformly to service methods in `trianglebahaiinstitute-core` and to FastAPI route handler signatures. Consistent ordering makes authorization intent immediately visible at every call site.
 
 ## Code Quality Rules
 
@@ -53,7 +52,7 @@ This applies uniformly to service methods in `mytbi-core` and to FastAPI route h
 
 ## Repository Conventions
 
-- Shared CRUD behavior for SQLModel repositories lives in `packages/mytbi-core/src/mytbi/repositories/base_repository.py`.
+- Shared CRUD behavior for SQLModel repositories lives in `packages/trianglebahaiinstitute-core/src/trianglebahaiinstitute/repositories/base_repository.py`.
 - New repositories should extend `BaseRepository[ModelT, IdentifierT]` instead of re-implementing `create`, `get_by_id`, `update`, or `delete`.
 - Concrete repositories should add only model-specific query and persistence methods that are not already covered by the base class.
 - Repository updates should use the current session with `add`/`flush`/`refresh` semantics by default. Do not introduce `merge` unless there is a real detached-instance workflow that requires it.

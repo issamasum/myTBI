@@ -1,5 +1,5 @@
 [project]
-name = "mytbi-workspace"
+name = "trianglebahaiinstitute-workspace"
 version = "0.1.0"
 license = { text = "MIT" }
 requires-python = ">=3.12"

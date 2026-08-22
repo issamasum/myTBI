@@ -1,7 +1,7 @@
 [run]
 branch = True
 source =
-    mytbi
+    trianglebahaiinstitute
 omit =
     */test/*
     */tests/*

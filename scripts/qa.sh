@@ -8,7 +8,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MODE="${1:-fix}"
-DEFAULT_TEST_DB_URL="postgresql+psycopg://postgres:postgres@postgres:5432/mytbi_test"
+DEFAULT_TEST_DB_URL="postgresql+psycopg://postgres:postgres@postgres:5432/trianglebahaiinstitute_test"
 TEST_DB_URL="${TEST_DATABASE_URL:-$DEFAULT_TEST_DB_URL}"
 
 # Ignore any activated per-package virtualenv from the parent shell.
@@ -33,14 +33,14 @@ export DATABASE_URL="$TEST_DB_URL"
 uv run ruff format --check .
 uv run ruff check .
 uv run pyright .
-uv run python -c "from mytbi.db import reset_db_and_tables; reset_db_and_tables()"
+uv run python -c "from trianglebahaiinstitute.db import reset_db_and_tables; reset_db_and_tables()"
 uv run pytest \
   --cov=api \
-  --cov=mytbi \
+  --cov=trianglebahaiinstitute \
   --cov-report=term-missing \
   --cov-config=.coveragerc \
   --cov-fail-under=100 \
-  api/test packages/mytbi-core/test
+  api/test packages/trianglebahaiinstitute-core/test
 
 # ---- Frontend (TypeScript / Angular) ----
 if [ -f "frontend/package.json" ] && grep -q '"test"' frontend/package.json; then

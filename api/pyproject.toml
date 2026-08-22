@@ -1,7 +1,7 @@
 [project]
-name = "mytbi-api"
+name = "trianglebahaiinstitute-api"
 version = "0.1.0"
-description = "FastAPI adapter for myTBI"
+description = "FastAPI adapter for TriangleBahaiInstitute.org"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.12"
@@ -11,13 +11,13 @@ dependencies = [
   "websockets>=15.0,<16",
   "pyjwt>=2.12.1",
   "python-multipart>=0.0.12",
-  "mytbi-core",
+  "trianglebahaiinstitute-core",
   "httpx>=0.28.1",
   "aio-pika>=9.5,<10",
 ]
 
 [tool.uv.sources]
-mytbi-core = { workspace = true }
+trianglebahaiinstitute-core = { workspace = true }
 
 [dependency-groups]
 dev = [

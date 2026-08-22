@@ -1,6 +1,6 @@
-# mytbi-core
+# trianglebahaiinstitute-core
 
-`mytbi-core` is the main shared backend package for myTBI.
+`trianglebahaiinstitute-core` is the main shared backend package for TriangleBahaii=Institute.org.
 
 This directory contains the reusable logic that should work the same way when it is called from the API.
 
@@ -26,16 +26,16 @@ Writing code for a similar questionabove usually involve:
 
 If you are new to this package, read these files in order:
 
-1. `src/mytbi/config.py`
-2. `src/mytbi/db.py`
-3. `src/mytbi/services/`
-4. `src/mytbi/repositories/`
-5. `src/mytbi/tools/`
+1. `src/trianglebahaiinstitute/config.py`
+2. `src/trianglebahaiinstitute/db.py`
+3. `src/trianglebahaiinstitute/services/`
+4. `src/trianglebahaiinstitute/repositories/`
+5. `src/trianglebahaiinstitute/tools/`
 
 ## Directory Map
 
 ```text
-src/mytbi/
+src/trianglebahaiinstitute/
 |- config.py            Settings and environment parsing
 |- db.py                Database engine and session helpers
 |- models/              API-facing and shared domain models
@@ -54,7 +54,7 @@ Most backend requests follow this path:
 
 1. A FastAPI route in `api/` receives the request.
 2. The route loads any path-based resources it needs.
-3. The route calls a service in `mytbi-core`.
+3. The route calls a service in `trianglebahaiinstitute-core`.
 4. The service uses repositories and models from this package.
 
 If a piece of logic would be useful in the API, it probably belongs in this package.
@@ -73,7 +73,7 @@ Services are classes. Their dependencies are injected through `__init__`. Public
 
 Repositories should handle database loading and saving. Services should not build SQL queries directly.
 
-For SQLModel-backed repositories, shared CRUD behavior now lives in `src/mytbi/repositories/base_repository.py`.
+For SQLModel-backed repositories, shared CRUD behavior now lives in `src/trianglebahaiinstitute/repositories/base_repository.py`.
 That means most repositories should subclass `BaseRepository[ModelT, IdentifierT]`, declare their `model_type`, and then add only the queries that are specific to that model.
 Avoid re-implementing `create`, `get_by_id`, `update`, or `delete` unless a repository has a documented exception.
 
@@ -108,12 +108,12 @@ The shared database fixtures live in `test/conftest.py`. Reuse them instead of r
 Run tests from the repository root:
 
 ```bash
-uv run pytest packages/mytbi-core/test
+uv run pytest packages/trianglebahaiinstitute-core/test
 ```
 
 ## Helpful Scripts
 
-From `packages/mytbi-core/`:
+From `packages/trianglebahaiinstitute-core/`:
 
 ```bash
 uv run python scripts/create_database.py

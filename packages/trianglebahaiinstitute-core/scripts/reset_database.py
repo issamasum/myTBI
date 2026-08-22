@@ -14,10 +14,10 @@ application is immediately usable for local development and end-to-end tests:
 
 import sys
 
-import mytbi.tables  # noqa: F401
-from mytbi.config import Settings
-from mytbi.db import get_engine, reset_db_and_tables
-from mytbi.dev_data import seed
+import trianglebahaiinstitute.tables  # noqa: F401
+from trianglebahaiinstitute.config import Settings
+from trianglebahaiinstitute.db import get_engine, reset_db_and_tables
+from trianglebahaiinstitute.dev_data import seed
 from sqlmodel import Session
 
 
